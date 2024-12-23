@@ -1,10 +1,6 @@
 import { JSDOM } from 'jsdom';
-import { 
-  ProcessedRaceResult, 
-  RawRaceResult 
-} from '@wsc-f1-game/types';
+import { ProcessedRaceResult, RawRaceResult } from '@wsc-f1-game/types';
 import { driverMapping } from '../../utils/driverMapping';
-import { cache } from '../../utils/cache';
 
 export class F1ResultsService {
   private static instance: F1ResultsService;
@@ -19,16 +15,9 @@ export class F1ResultsService {
   }
 
   async fetchResults(url: string): Promise<ProcessedRaceResult> {
-    const cacheKey = `results:${url}`;
-    const cached = await cache.get(cacheKey);
-    if (cached) return cached;
-
     const html = await this.fetchRawHtml(url);
     const rawResults = this.parseHtml(html);
-    const processedResults = this.processResults(rawResults, url);
-    
-    await cache.set(cacheKey, processedResults);
-    return processedResults;
+    return this.processResults(rawResults, url);
   }
 
   private async fetchRawHtml(url: string): Promise<string> {
