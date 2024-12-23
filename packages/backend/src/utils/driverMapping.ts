@@ -1,4 +1,4 @@
-import { Driver } from '@wsc-f1-game/types';
+import { Driver } from '../types';
 
 class DriverMapping {
   private static instance: DriverMapping;
