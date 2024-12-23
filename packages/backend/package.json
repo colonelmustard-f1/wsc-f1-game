@@ -9,10 +9,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@wsc-f1-game/types": "workspace:*",
     "express": "^4.18.2",
     "jsdom": "^22.1.0",
-    "redis": "^4.6.13",
     "firebase-admin": "^11.11.1"
   },
   "devDependencies": {
