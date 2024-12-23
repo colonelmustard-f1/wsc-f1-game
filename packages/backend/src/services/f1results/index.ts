@@ -1,7 +1,4 @@
 import { JSDOM } from 'jsdom';
-import { ProcessedRaceResult, RawRaceResult } from '@wsc-f1-game/types';
-import { driverMapping } from '../../utils/driverMapping';
-import { JSDOM } from 'jsdom';
 import { ProcessedRaceResult, RawRaceResult } from '../../types';
 import { driverMapping } from '../../utils/driverMapping';
 
