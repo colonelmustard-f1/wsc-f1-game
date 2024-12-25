@@ -1,83 +1,76 @@
+// src/components/LeaderboardTable/LeaderboardTable.js
 'use client'
+
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { calculateStandings } from '@/lib/utils/scoring';
+import { calculateStandings } from '../../lib/utils/scoring';
 
 const LeaderboardTable = ({ predictions, results }) => {
   const [expandedUser, setExpandedUser] = useState(null);
   const standings = calculateStandings(predictions, results);
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader>
-        <CardTitle>WSC F1 2024 Standings</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Position</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead className="text-right">Points</TableHead>
-              <TableHead className="text-right">Details</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+    <div className="bg-white rounded shadow">
+      <h2 className="text-xl font-bold p-4">WSC F1 2024 Standings</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full text-left">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="p-4">Position</th>
+              <th className="p-4">Name</th>
+              <th className="p-4 text-right">Points</th>
+              <th className="p-4 text-right">Details</th>
+            </tr>
+          </thead>
+          <tbody>
             {standings.map((standing, index) => (
               <React.Fragment key={standing.userId}>
-                <TableRow>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{standing.userId}</TableCell>
-                  <TableCell className="text-right font-bold">{standing.totalPoints}</TableCell>
-                  <TableCell className="text-right">
-                    <Button
-                      variant="ghost"
-                      size="sm"
+                <tr className="border-t">
+                  <td className="p-4">{index + 1}</td>
+                  <td className="p-4">{standing.userId}</td>
+                  <td className="p-4 text-right font-bold">{standing.totalPoints}</td>
+                  <td className="p-4 text-right">
+                    <button
+                      className="px-2 py-1 text-blue-500 hover:text-blue-700"
                       onClick={() => setExpandedUser(expandedUser === standing.userId ? null : standing.userId)}
                     >
-                      {expandedUser === standing.userId ? <ChevronUp /> : <ChevronDown />}
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                      {expandedUser === standing.userId ? '▼' : '▶'}
+                    </button>
+                  </td>
+                </tr>
                 {expandedUser === standing.userId && (
-                  <TableRow>
-                    <TableCell colSpan={4} className="bg-muted">
-                      <div className="p-4">
-                        <Table>
-                          <TableHeader>
-                            <TableRow>
-                              <TableHead>Race</TableHead>
-                              <TableHead>P10 Points</TableHead>
-                              <TableHead>DNF Points</TableHead>
-                              <TableHead>Sprint Points</TableHead>
-                              <TableHead className="text-right">Total</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {Object.entries(standing.races).map(([raceId, points]) => (
-                              <TableRow key={raceId}>
-                                <TableCell>{raceId}</TableCell>
-                                <TableCell>{points.racePoints || 0}</TableCell>
-                                <TableCell>{points.dnfPoints || 0}</TableCell>
-                                <TableCell>{points.sprintPoints || 0}</TableCell>
-                                <TableCell className="text-right">{points.total}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                      </div>
-                    </TableCell>
-                  </TableRow>
+                  <tr>
+                    <td colSpan={4} className="bg-gray-50 p-4">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr>
+                            <th className="p-2 text-left">Race</th>
+                            <th className="p-2 text-right">P10 Points</th>
+                            <th className="p-2 text-right">DNF Points</th>
+                            <th className="p-2 text-right">Sprint Points</th>
+                            <th className="p-2 text-right">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {Object.entries(standing.races).map(([raceId, points]) => (
+                            <tr key={raceId} className="border-t border-gray-200">
+                              <td className="p-2">{raceId}</td>
+                              <td className="p-2 text-right">{points.racePoints || 0}</td>
+                              <td className="p-2 text-right">{points.dnfPoints || 0}</td>
+                              <td className="p-2 text-right">{points.sprintPoints || 0}</td>
+                              <td className="p-2 text-right font-bold">{points.total}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
                 )}
               </React.Fragment>
             ))}
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
