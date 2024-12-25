@@ -1,4 +1,6 @@
 // src/app/page.js
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import PredictionForm from '@/components/PredictionForm/PredictionForm';
 import LeaderboardTable from '@/components/LeaderboardTable/LeaderboardTable';
@@ -49,7 +51,6 @@ export default function Home() {
   const currentRace = getCurrentRace(races);
 
   const handleSubmitPrediction = (prediction) => {
-    // Update local state to show in leaderboard
     setPredictions(prev => ({
       ...prev,
       [prediction.raceId]: {
