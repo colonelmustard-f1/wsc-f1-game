@@ -1,0 +1,27 @@
+{
+  "drivers": [
+    {"id": "VER", "name": "Verstappen", "team": "Red Bull Racing Honda RBPT"},
+    {"id": "NOR", "name": "Norris", "team": "McLaren Mercedes"},
+    {"id": "LEC", "name": "Leclerc", "team": "Ferrari"},
+    {"id": "PIA", "name": "Piastri", "team": "McLaren Mercedes"},
+    {"id": "SAI", "name": "Sainz", "team": "Ferrari"},
+    {"id": "RUS", "name": "Russell", "team": "Mercedes"},
+    {"id": "HAM", "name": "Hamilton", "team": "Mercedes"},
+    {"id": "PER", "name": "Perez", "team": "Red Bull Racing Honda RBPT"},
+    {"id": "ALO", "name": "Alonso", "team": "Aston Martin Aramco Mercedes"},
+    {"id": "GAS", "name": "Gasly", "team": "Alpine Renault"},
+    {"id": "HUL", "name": "Hulkenberg", "team": "Haas Ferrari"},
+    {"id": "TSU", "name": "Tsunoda", "team": "RB Honda RBPT"},
+    {"id": "STR", "name": "Stroll", "team": "Aston Martin Aramco Mercedes"},
+    {"id": "OCO", "name": "Ocon", "team": "Alpine Renault"},
+    {"id": "MAG", "name": "Magnussen", "team": "Haas Ferrari"},
+    {"id": "ALB", "name": "Albon", "team": "Williams Mercedes"},
+    {"id": "RIC", "name": "Ricciardo", "team": "RB Honda RBPT"},
+    {"id": "BEA", "name": "Bearman", "team": "Haas Ferrari"},
+    {"id": "SAR", "name": "Sargeant", "team": "Williams Mercedes"},
+    {"id": "ZHO", "name": "Zhou", "team": "Kick Sauber Ferrari"},
+    {"id": "LAW", "name": "Lawson", "team": "RB Honda RBPT"},
+    {"id": "BOT", "name": "Bottas", "team": "Kick Sauber Ferrari"},
+    {"id": "DOO", "name": "Doohan", "team": "Alpine Renault"}
+  ]
+}
