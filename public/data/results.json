@@ -1,0 +1,42 @@
+{
+  "results": {
+    // PASTE NEW RACE RESULTS HERE, FOLLOWING THIS FORMAT:
+    "bahrain-2024": {
+      "race": {
+        "positions": {
+          "1": "VER",
+          "2": "PER",
+          // ... all positions
+        },
+        "dnfs": [
+          // If any DNFs occurred, include them like this:
+          {
+            "lap": 23,
+            "drivers": ["RIC", "ALO"]  // multiple drivers if they DNF'd on same lap
+          }
+        ],
+        "timestamp": "2024-03-02T17:45:00Z"
+      }
+    },
+    
+    // FOR SPRINT RACES, USE THIS FORMAT:
+    "china-2024": {
+      "sprint": {
+        "positions": {
+          "1": "VER",
+          // ... all positions
+        },
+        "dnfs": [],
+        "timestamp": "2024-04-20T09:30:00Z"
+      },
+      "race": {
+        "positions": {
+          "1": "VER",
+          // ... all positions
+        },
+        "dnfs": [],
+        "timestamp": "2024-04-21T09:00:00Z"
+      }
+    }
+  }
+}
