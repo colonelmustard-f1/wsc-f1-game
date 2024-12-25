@@ -1,4 +1,5 @@
-import React from 'react';
+// src/app/page.js
+import React, { useState, useEffect } from 'react';
 import PredictionForm from '@/components/PredictionForm/PredictionForm';
 import LeaderboardTable from '@/components/LeaderboardTable/LeaderboardTable';
 import { Toaster } from '@/components/ui/toaster';
@@ -14,7 +15,6 @@ const getCurrentRace = (races) => {
 };
 
 export default function Home() {
-  // In a real app, these would be fetched from your JSON files
   const [users, setUsers] = useState([]);
   const [drivers, setDrivers] = useState([]);
   const [races, setRaces] = useState([]);
@@ -22,7 +22,7 @@ export default function Home() {
   const [results, setResults] = useState({});
 
   useEffect(() => {
-    // Load data from JSON files
+    // Load data from JSON files in public/data
     const loadData = async () => {
       try {
         const [usersData, driversData, racesData, predictionsData, resultsData] = await Promise.all([
@@ -49,8 +49,6 @@ export default function Home() {
   const currentRace = getCurrentRace(races);
 
   const handleSubmitPrediction = (prediction) => {
-    // In a real app, this would save to your predictions.json
-    console.log('Submitted prediction:', prediction);
     // Update local state to show in leaderboard
     setPredictions(prev => ({
       ...prev,
