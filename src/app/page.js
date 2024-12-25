@@ -2,8 +2,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import PredictionForm from '../../components/PredictionForm/PredictionForm';
-import LeaderboardTable from '../../components/LeaderboardTable/LeaderboardTable';
+import PredictionForm from '@/components/PredictionForm/PredictionForm';
+import LeaderboardTable from '@/components/LeaderboardTable/LeaderboardTable';
 
 // Helper to get current race
 const getCurrentRace = (races) => {
