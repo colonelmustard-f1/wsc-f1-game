@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { calculateStandings } from '../../lib/utils/scoring';
+import { calculateStandings } from '@/lib/utils/scoring';
 
 const LeaderboardTable = ({ predictions, results }) => {
   const [expandedUser, setExpandedUser] = useState(null);
