@@ -1,0 +1,77 @@
+{
+  "results": {
+    "bahrain-2024": {
+      "race": {
+        "positions": {
+          "1": "VER",
+          "2": "PER",
+          "3": "SAI",
+          "4": "LEC",
+          "5": "RUS",
+          "6": "NOR",
+          "7": "HAM",
+          "8": "PIA",
+          "9": "ALO",
+          "10": "STR",
+          "11": "ZHO",
+          "12": "MAG",
+          "13": "RIC",
+          "14": "TSU",
+          "15": "ALB",
+          "16": "HUL",
+          "17": "OCO",
+          "18": "GAS",
+          "NC": ["BOT", "BEA"]
+        },
+        "dnfs": [
+          {
+            "lap": 1,
+            "drivers": ["BOT", "BEA"]  // Multiple drivers can DNF on same lap
+          },
+          {
+            "lap": 25,
+            "drivers": ["TSU"]
+          }
+        ],
+        "timestamp": "2024-03-02T17:45:00Z"
+      }
+    },
+    "china-2024": {
+      "sprint": {
+        "positions": {
+          "1": "VER",
+          "2": "LEC",
+          "3": "PER",
+          "4": "SAI",
+          "5": "NOR",
+          "6": "PIA",
+          "7": "RUS",
+          "8": "HAM",
+          "9": "ALO",
+          "10": "STR",
+          "NC": ["TSU"]
+        },
+        "dnfs": [
+          {
+            "lap": 3,
+            "drivers": ["TSU"]
+          }
+        ],
+        "timestamp": "2024-04-20T09:30:00Z"
+      },
+      "race": {
+        "positions": {
+          // ... race positions
+          "NC": ["BOT", "ALO"]
+        },
+        "dnfs": [
+          {
+            "lap": 15,
+            "drivers": ["BOT", "ALO"]  // Example of multiple DNFs on same lap
+          }
+        ],
+        "timestamp": "2024-04-21T09:00:00Z"
+      }
+    }
+  }
+}
