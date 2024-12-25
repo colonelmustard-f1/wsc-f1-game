@@ -2,9 +2,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import PredictionForm from '@/components/PredictionForm/PredictionForm';
-import LeaderboardTable from '@/components/LeaderboardTable/LeaderboardTable';
-import { Toaster } from '@/components/ui/toaster';
+import PredictionForm from '../../components/PredictionForm/PredictionForm';
+import LeaderboardTable from '../../components/LeaderboardTable/LeaderboardTable';
 
 // Helper to get current race
 const getCurrentRace = (races) => {
@@ -88,8 +87,6 @@ export default function Home() {
           />
         </div>
       </div>
-      
-      <Toaster />
     </main>
   );
 }
