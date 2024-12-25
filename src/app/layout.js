@@ -1,5 +1,5 @@
 // src/app/layout.js
-import '@/styles/globals.css'
+import '../styles/globals.css'
 
 export const metadata = {
   title: 'WSC F1 Game',
