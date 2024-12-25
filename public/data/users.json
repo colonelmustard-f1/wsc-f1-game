@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": "mario",
+      "name": "Mario",
+      "isAdmin": true
+    },
+    {
+      "id": "ricky",
+      "name": "Ricky",
+      "isAdmin": false
+    },
+    {
+      "id": "flynn",
+      "name": "Flynn",
+      "isAdmin": false
+    }
+  ]
+}
