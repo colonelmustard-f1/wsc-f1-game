@@ -1,0 +1,21 @@
+{
+  "predictions": {
+    "bahrain-2024": {
+      "mario": {
+        "p10": null,
+        "dnf": null,
+        "timestamp": null
+      },
+      "ricky": {
+        "p10": null,
+        "dnf": null,
+        "timestamp": null
+      },
+      "flynn": {
+        "p10": null,
+        "dnf": null,
+        "timestamp": null
+      }
+    }
+  }
+}
