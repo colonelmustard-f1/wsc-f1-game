@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 const PredictionForm = ({ users, drivers, currentRace, onSubmit }) => {
+  const { toast } = useToast();
   const [selectedUser, setSelectedUser] = useState('');
   const [predictions, setPredictions] = useState({
     p10: '',
@@ -13,14 +15,31 @@ const PredictionForm = ({ users, drivers, currentRace, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Get driver names for confirmation message
+    const p10Driver = drivers.find(d => d.id === predictions.p10)?.name;
+    const dnfDriver = drivers.find(d => d.id === predictions.dnf)?.name;
+    const sprintDriver = drivers.find(d => d.id === predictions.sprintP8)?.name;
+    
     onSubmit({
       userId: selectedUser,
       ...predictions,
       raceId: currentRace.id,
       timestamp: new Date().toISOString()
     });
+
+    // Show confirmation toast
+    toast({
+      title: "Predictions Submitted!",
+      description: `P10: ${p10Driver}
+                   DNF: ${dnfDriver}
+                   ${currentRace.isSprint ? `Sprint P8: ${sprintDriver}` : ''}`,
+      duration: 5000
+    });
+
     // Reset form
     setPredictions({ p10: '', dnf: '', sprintP8: '' });
+    setSelectedUser('');
   };
 
   // If no current race, show message
