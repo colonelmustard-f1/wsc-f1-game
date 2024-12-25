@@ -1,0 +1,23 @@
+{
+  "drivers": [
+    {"id": "ALB", "name": "Alexander Albon", "team": "Williams"},
+    {"id": "BOT", "name": "Valtteri Bottas", "team": "Kick Sauber"},
+    {"id": "BEA", "name": "Oliver Bearman", "team": "Haas"},
+    {"id": "ALO", "name": "Fernando Alonso", "team": "Aston Martin"},
+    {"id": "GAS", "name": "Pierre Gasly", "team": "Alpine"},
+    {"id": "HAM", "name": "Lewis Hamilton", "team": "Mercedes"},
+    {"id": "HUL", "name": "Nico Hulkenberg", "team": "Haas"},
+    {"id": "LEC", "name": "Charles Leclerc", "team": "Ferrari"},
+    {"id": "MAG", "name": "Kevin Magnussen", "team": "Haas"},
+    {"id": "NOR", "name": "Lando Norris", "team": "McLaren"},
+    {"id": "OCO", "name": "Esteban Ocon", "team": "Alpine"},
+    {"id": "PER", "name": "Sergio Perez", "team": "Red Bull Racing"},
+    {"id": "PIA", "name": "Oscar Piastri", "team": "McLaren"},
+    {"id": "RIC", "name": "Daniel Ricciardo", "team": "RB"},
+    {"id": "RUS", "name": "George Russell", "team": "Mercedes"},
+    {"id": "SAI", "name": "Carlos Sainz", "team": "Ferrari"},
+    {"id": "TSU", "name": "Yuki Tsunoda", "team": "RB"},
+    {"id": "VER", "name": "Max Verstappen", "team": "Red Bull Racing"},
+    {"id": "ZHO", "name": "Zhou Guanyu", "team": "Kick Sauber"}
+  ]
+}
