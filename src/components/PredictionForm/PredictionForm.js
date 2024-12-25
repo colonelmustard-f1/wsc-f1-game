@@ -1,12 +1,9 @@
+// src/components/PredictionForm/PredictionForm.js
 'use client'
+
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
 
 const PredictionForm = ({ users, drivers, currentRace, onSubmit }) => {
-  const { toast } = useToast();
   const [selectedUser, setSelectedUser] = useState('');
   const [predictions, setPredictions] = useState({
     p10: '',
@@ -16,28 +13,12 @@ const PredictionForm = ({ users, drivers, currentRace, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Get driver names for confirmation message
-    const p10Driver = drivers.find(d => d.id === predictions.p10)?.name;
-    const dnfDriver = drivers.find(d => d.id === predictions.dnf)?.name;
-    const sprintDriver = drivers.find(d => d.id === predictions.sprintP8)?.name;
-    
     onSubmit({
       userId: selectedUser,
       ...predictions,
       raceId: currentRace.id,
       timestamp: new Date().toISOString()
     });
-
-    // Show confirmation toast
-    toast({
-      title: "Predictions Submitted!",
-      description: `P10: ${p10Driver}
-                   DNF: ${dnfDriver}
-                   ${currentRace.isSprint ? `Sprint P8: ${sprintDriver}` : ''}`,
-      duration: 5000
-    });
-
     // Reset form
     setPredictions({ p10: '', dnf: '', sprintP8: '' });
     setSelectedUser('');
@@ -46,114 +27,96 @@ const PredictionForm = ({ users, drivers, currentRace, onSubmit }) => {
   // If no current race, show message
   if (!currentRace) {
     return (
-      <Card className="w-full max-w-md mx-auto">
-        <CardContent className="pt-6">
-          <p className="text-center text-muted-foreground">No active race available for predictions</p>
-        </CardContent>
-      </Card>
+      <div className="p-4 max-w-md mx-auto bg-white rounded shadow">
+        <p className="text-center text-gray-500">No active race available for predictions</p>
+      </div>
     );
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader>
-        <CardTitle>{currentRace.name} - Predictions</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* User Selection */}
-          <div className="space-y-2">
-            <label className="font-medium">Select Your Name</label>
-            <Select 
-              value={selectedUser} 
-              onValueChange={setSelectedUser}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Choose player..." />
-              </SelectTrigger>
-              <SelectContent>
-                {users.map(user => (
-                  <SelectItem key={user.id} value={user.id}>
-                    {user.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* P10 Prediction */}
-          <div className="space-y-2">
-            <label className="font-medium">P10 Prediction</label>
-            <Select 
-              value={predictions.p10}
-              onValueChange={(value) => setPredictions(prev => ({...prev, p10: value}))}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select driver..." />
-              </SelectTrigger>
-              <SelectContent>
-                {drivers.map(driver => (
-                  <SelectItem key={driver.id} value={driver.id}>
-                    {driver.name} ({driver.team})
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* DNF Prediction */}
-          <div className="space-y-2">
-            <label className="font-medium">First DNF Prediction</label>
-            <Select 
-              value={predictions.dnf}
-              onValueChange={(value) => setPredictions(prev => ({...prev, dnf: value}))}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select driver..." />
-              </SelectTrigger>
-              <SelectContent>
-                {drivers.map(driver => (
-                  <SelectItem key={driver.id} value={driver.id}>
-                    {driver.name} ({driver.team})
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Sprint P8 Prediction (only for sprint weekends) */}
-          {currentRace.isSprint && (
-            <div className="space-y-2">
-              <label className="font-medium">Sprint P8 Prediction</label>
-              <Select 
-                value={predictions.sprintP8}
-                onValueChange={(value) => setPredictions(prev => ({...prev, sprintP8: value}))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select driver..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {drivers.map(driver => (
-                    <SelectItem key={driver.id} value={driver.id}>
-                      {driver.name} ({driver.team})
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          )}
-
-          <Button 
-            type="submit" 
-            className="w-full"
-            disabled={!selectedUser || !predictions.p10 || !predictions.dnf || 
-              (currentRace.isSprint && !predictions.sprintP8)}
+    <div className="p-4 max-w-md mx-auto bg-white rounded shadow">
+      <h2 className="text-xl font-bold mb-4">{currentRace.name} - Predictions</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* User Selection */}
+        <div>
+          <label className="block font-medium mb-1">Select Your Name</label>
+          <select 
+            value={selectedUser}
+            onChange={(e) => setSelectedUser(e.target.value)}
+            className="w-full p-2 border rounded"
           >
-            Submit Predictions
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+            <option value="">Choose player...</option>
+            {users.map(user => (
+              <option key={user.id} value={user.id}>
+                {user.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* P10 Prediction */}
+        <div>
+          <label className="block font-medium mb-1">P10 Prediction</label>
+          <select 
+            value={predictions.p10}
+            onChange={(e) => setPredictions(prev => ({...prev, p10: e.target.value}))}
+            className="w-full p-2 border rounded"
+          >
+            <option value="">Select driver...</option>
+            {drivers.map(driver => (
+              <option key={driver.id} value={driver.id}>
+                {driver.name} ({driver.team})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* DNF Prediction */}
+        <div>
+          <label className="block font-medium mb-1">First DNF Prediction</label>
+          <select 
+            value={predictions.dnf}
+            onChange={(e) => setPredictions(prev => ({...prev, dnf: e.target.value}))}
+            className="w-full p-2 border rounded"
+          >
+            <option value="">Select driver...</option>
+            {drivers.map(driver => (
+              <option key={driver.id} value={driver.id}>
+                {driver.name} ({driver.team})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Sprint P8 Prediction (only for sprint weekends) */}
+        {currentRace.isSprint && (
+          <div>
+            <label className="block font-medium mb-1">Sprint P8 Prediction</label>
+            <select 
+              value={predictions.sprintP8}
+              onChange={(e) => setPredictions(prev => ({...prev, sprintP8: e.target.value}))}
+              className="w-full p-2 border rounded"
+            >
+              <option value="">Select driver...</option>
+              {drivers.map(driver => (
+                <option key={driver.id} value={driver.id}>
+                  {driver.name} ({driver.team})
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <button 
+          type="submit" 
+          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          disabled={!selectedUser || !predictions.p10 || !predictions.dnf || 
+            (currentRace.isSprint && !predictions.sprintP8)}
+        >
+          Submit Predictions
+        </button>
+      </form>
+    </div>
   );
 };
 
